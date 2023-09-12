@@ -21,9 +21,9 @@ def wordle():
 
     def enter_action(s):
         if s in FIVE_LETTER_WORDS:
-            gw.show_message("'{}' is a possible word, great job!")
+            gw.show_message(s + " is a valid word!")
         else:
-            gw.show_message("Sorry, '{}' is not in the word list.")
+            gw.show_message(s + " is not in the word list.")
 
     gw.add_enter_listener(enter_action)
 
