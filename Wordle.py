@@ -22,6 +22,27 @@ def wordle():
             # If the input string is empty or contains only whitespace, do nothing
             return
         if s.lower() in FIVE_LETTER_WORDS:
+            correct_letter = []
+            present_letter = []
+            missing_letter = []
+
+            for col in range(N_COLS):
+                guess_letter = s[col]
+                word_letter = random_word[col]
+
+                if guess_letter.lower() == word_letter.lower():
+                    correct_letter.append(col)
+                elif guess_letter.lower() in random_word.lower():
+                    present_letter.append(col)
+                else:
+                    missing_letter.append(col)
+
+            for col in correct_letter:
+                gw.set_square_color(gw.get_current_row(), col, CORRECT_COLOR)
+            for col in present_letter:
+                gw.set_square_color(gw.get_current_row(), col, PRESENT_COLOR)
+            for col in missing_letter:
+                gw.set_square_color(gw.get_current_row(), col, MISSING_COLOR)
             if s.lower() == random_word.lower():
                 gw.show_message("You win! The word is " + s)
                 gw.set_current_row(7)
@@ -29,28 +50,6 @@ def wordle():
                 if gw.get_current_row() > 4 :
                     gw.show_message("Game over. The correct word was \"" + random_word + "\"")
                 else: 
-
-                    correct_letter = []
-                    present_letter = []
-                    missing_letter = []
-
-                    for col in range(N_COLS):
-                        guess_letter = s[col]
-                        word_letter = random_word[col]
-
-                        if guess_letter.lower() == word_letter.lower():
-                            correct_letter.append(col)
-                        elif guess_letter.lower() in random_word.lower():
-                            present_letter.append(col)
-                        else:
-                            missing_letter.append(col)
-
-                    for col in correct_letter:
-                        gw.set_square_color(gw.get_current_row(), col, CORRECT_COLOR)
-                    for col in present_letter:
-                        gw.set_square_color(gw.get_current_row(), col, PRESENT_COLOR)
-                    for col in missing_letter:
-                        gw.set_square_color(gw.get_current_row(), col, MISSING_COLOR)
                     gw.show_message("Try Again")
                 gw.set_current_row(gw.get_current_row() + 1)
         else:
