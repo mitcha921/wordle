@@ -26,8 +26,9 @@ def wordle():
                 gw.show_message("You win! The word is " + s)
             else:
                 if gw.get_current_row() > 4 :
-                    gw.show_message("Game over")
+                    gw.show_message("Game over. The correct word was \"" + random_word + "\"")
                 else: 
+
                     correct_letter = []
                     present_letter = []
                     missing_letter = []
