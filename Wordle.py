@@ -48,7 +48,7 @@ def wordle():
                 gw.set_current_row(7)
             else:
                 if gw.get_current_row() > 4 :
-                    gw.show_message("Game over")
+                    gw.show_message("Game over. The correct word was \"" + random_word + "\"")
                 else: 
                     gw.show_message("Try Again")
                 gw.set_current_row(gw.get_current_row() + 1)
