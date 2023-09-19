@@ -24,6 +24,7 @@ def wordle():
         if s.lower() in FIVE_LETTER_WORDS:
             if s.lower() == random_word.lower():
                 gw.show_message("You win! The word is " + s)
+                gw.set_current_row(7)
             else:
                 if gw.get_current_row() > 4 :
                     gw.show_message("Game over")
