@@ -18,6 +18,17 @@ def wordle():
     print("the word is " + random_word)
 
     def enter_action(s):
+        correct_color = CORRECT_COLOR
+        present_color = PRESENT_COLOR
+        missing_color = MISSING_COLOR
+
+        is_alternate_color_scheme = True # must change manually for now
+
+        if (is_alternate_color_scheme):
+            correct_color = "#85BFF9"
+            present_color = "#F5793A"
+
+
         if s.strip().lower() == "":
             # If the input string is empty or contains only whitespace, do nothing
             return
@@ -38,11 +49,11 @@ def wordle():
                     missing_letter.append(col)
 
             for col in correct_letter:
-                gw.set_square_color(gw.get_current_row(), col, CORRECT_COLOR)
+                gw.set_square_color(gw.get_current_row(), col, correct_color)
             for col in present_letter:
-                gw.set_square_color(gw.get_current_row(), col, PRESENT_COLOR)
+                gw.set_square_color(gw.get_current_row(), col, present_color)
             for col in missing_letter:
-                gw.set_square_color(gw.get_current_row(), col, MISSING_COLOR)
+                gw.set_square_color(gw.get_current_row(), col, missing_color)
             if s.lower() == random_word.lower():
                 gw.show_message("You win! The word is " + s)
                 gw.set_current_row(7)
