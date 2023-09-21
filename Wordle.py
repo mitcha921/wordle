@@ -8,13 +8,21 @@ BE SURE TO UPDATE THIS COMMENT WHEN YOU WRITE THE CODE.
 import random
 
 from WordleDictionary import FIVE_LETTER_WORDS
+from WordleDictionarySpanish import FIVE_LETTER_SPANISH_WORDS
 from WordleGraphics import WordleGWindow, N_COLS, N_ROWS, CORRECT_COLOR, PRESENT_COLOR, MISSING_COLOR
 
 def wordle():
 
     gw = WordleGWindow()
+    
+    is_spanish = True #change manually for now
 
-    random_word = random.choice(FIVE_LETTER_WORDS)
+    if (is_spanish):
+        dictionary = FIVE_LETTER_SPANISH_WORDS
+    else:
+        dictionary = FIVE_LETTER_WORDS
+
+    random_word = random.choice(dictionary)
     print("the word is " + random_word)
 
     def enter_action(s):
@@ -32,7 +40,8 @@ def wordle():
         if s.strip().lower() == "":
             # If the input string is empty or contains only whitespace, do nothing
             return
-        if s.lower() in FIVE_LETTER_WORDS:
+
+        if s.lower() in dictionary:
             correct_letter = []
             present_letter = []
             missing_letter = []
