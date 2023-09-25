@@ -18,7 +18,7 @@ def wordle():
     selection_window.title("Wordle Settings")
 
     # Create label for window
-    label = tkinter.Label(selection_window, text="Select your game settings:")
+    label = tkinter.Label(selection_window, text="Select language:")
     label.pack()
 
     # Create radio buttons 
@@ -30,12 +30,34 @@ def wordle():
     spanish_radio.pack()
 
     # Create button to start game
-    start_button = tkinter.Button(selection_window, text="Start Game", command=lambda: start_game(var.get(), selection_window))
+    start_button = tkinter.Button(selection_window, text="Select Color Scheme", command=lambda: select_color(var.get(), selection_window))
     start_button.pack()
 
     selection_window.mainloop()
 
-def start_game(selected_language, selection_window):
+def select_color(selected_lanuage, selection_window):
+    selection_window.destroy()
+    # Create window for color selection
+    select_color_window = tkinter.Tk()
+    select_color_window.title("Wordle Settings")
+
+    # Create label for window
+    label = tkinter.Label(select_color_window, text="Select color scheme:")
+    label.pack()
+
+    # Create radio buttons 
+    var = tkinter.StringVar()
+    var.set("Default")  # Default selection
+    default_radio = tkinter.Radiobutton(select_color_window, text="Default", variable=var, value="Default")
+    alternate_radio = tkinter.Radiobutton(select_color_window, text="Alternate", variable=var, value="Alternate")
+    default_radio.pack()
+    alternate_radio.pack()
+
+    # Create button to start game
+    start_button = tkinter.Button(select_color_window, text="Start Game", command=lambda: start_game(selected_lanuage, var.get(), select_color_window))
+    start_button.pack()
+
+def start_game(selected_language, selected_color_scheme, selection_window):
     # Close the language selection window
     selection_window.destroy()
 
@@ -54,7 +76,10 @@ def start_game(selected_language, selection_window):
         present_color = PRESENT_COLOR
         missing_color = MISSING_COLOR
 
-        is_alternate_color_scheme = True  # must change manually for now
+        if selected_color_scheme == "Default":
+            is_alternate_color_scheme = False
+        else:
+            is_alternate_color_scheme = True
 
         if is_alternate_color_scheme:
             correct_color = "#85BFF9"
