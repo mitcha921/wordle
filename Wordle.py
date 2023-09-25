@@ -6,12 +6,12 @@ from WordleDictionarySpanish import FIVE_LETTER_SPANISH_WORDS
 from WordleGraphics import WordleGWindow, N_COLS, N_ROWS, CORRECT_COLOR, PRESENT_COLOR, MISSING_COLOR
 
 def wordle():
-    # Create window for language selection
+    # Create window settings selection
     selection_window = tkinter.Tk()
     selection_window.title("Wordle Settings")
 
     # Create label for window
-    label = tkinter.Label(selection_window, text="Select your game settings:")
+    label = tkinter.Label(selection_window, text="Preferred language:")
     label.pack()
 
     # Create radio buttons for language selection
@@ -23,14 +23,14 @@ def wordle():
     spanish_radio.pack()
 
     # Create label for color scheme selection
-    color_label = tkinter.Label(selection_window, text="Select your color scheme:")
+    color_label = tkinter.Label(selection_window, text="Preferred color scheme:")
     color_label.pack()
 
     # Create radio buttons for color scheme selection
     var_color = tkinter.StringVar()
     var_color.set("Default")  # Default selection
-    default_color_radio = tkinter.Radiobutton(selection_window, text="Default", variable=var_color, value="Default")
-    alternate_color_radio = tkinter.Radiobutton(selection_window, text="Alternate", variable=var_color, value="Alternate")
+    default_color_radio = tkinter.Radiobutton(selection_window, text="Normal", variable=var_color, value="Default")
+    alternate_color_radio = tkinter.Radiobutton(selection_window, text="Color-blind", variable=var_color, value="Alternate")
     default_color_radio.pack()
     alternate_color_radio.pack()
 
