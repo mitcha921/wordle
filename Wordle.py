@@ -6,13 +6,13 @@ from WordleDictionarySpanish import FIVE_LETTER_SPANISH_WORDS
 from WordleGraphics import WordleGWindow, N_COLS, N_ROWS, CORRECT_COLOR, PRESENT_COLOR, MISSING_COLOR
 
 def wordle():
-    # Create window for language and color scheme selection
+    # Create window for language selection
     selection_window = tkinter.Tk()
     selection_window.title("Wordle Settings")
 
-    # Create label for language selection
-    language_label = tkinter.Label(selection_window, text="Preferred language:")
-    language_label.pack()
+    # Create label for window
+    label = tkinter.Label(selection_window, text="Select your game settings:")
+    label.pack()
 
     # Create radio buttons for language selection
     var_language = tkinter.StringVar()
@@ -23,14 +23,14 @@ def wordle():
     spanish_radio.pack()
 
     # Create label for color scheme selection
-    color_label = tkinter.Label(selection_window, text="Preferred color scheme:")
+    color_label = tkinter.Label(selection_window, text="Select your color scheme:")
     color_label.pack()
 
     # Create radio buttons for color scheme selection
     var_color = tkinter.StringVar()
     var_color.set("Default")  # Default selection
-    default_color_radio = tkinter.Radiobutton(selection_window, text="Normal", variable=var_color, value="Default")
-    alternate_color_radio = tkinter.Radiobutton(selection_window, text="Color-blind", variable=var_color, value="Alternate")
+    default_color_radio = tkinter.Radiobutton(selection_window, text="Default", variable=var_color, value="Default")
+    alternate_color_radio = tkinter.Radiobutton(selection_window, text="Alternate", variable=var_color, value="Alternate")
     default_color_radio.pack()
     alternate_color_radio.pack()
 
@@ -53,9 +53,6 @@ def start_game(selected_language, selected_color_scheme, selection_window):
 
     random_word = random.choice(dictionary)
     print("The word is " + random_word)
-
-    # Keep track of which letters in the random word have been matched
-    matched_indices = set()
 
     def enter_action(s):
         correct_color = CORRECT_COLOR
@@ -81,10 +78,8 @@ def start_game(selected_language, selected_color_scheme, selection_window):
 
                 if guess_letter.lower() == word_letter.lower():
                     correct_letter.append(col)
-                    matched_indices.add(col)
-                elif guess_letter.lower() in random_word.lower() and col not in matched_indices:
+                elif guess_letter.lower() in random_word.lower():
                     present_letter.append(col)
-                    matched_indices.add(col)
                 else:
                     missing_letter.append(col)
 
@@ -111,5 +106,8 @@ def start_game(selected_language, selected_color_scheme, selection_window):
 # Startup code
 if __name__ == "__main__":
     wordle()
+
+
+
 
 
