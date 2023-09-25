@@ -13,12 +13,12 @@ from WordleDictionarySpanish import FIVE_LETTER_SPANISH_WORDS
 from WordleGraphics import WordleGWindow, N_COLS, N_ROWS, CORRECT_COLOR, PRESENT_COLOR, MISSING_COLOR
 
 def wordle():
-    # Create window for language selection
+    # Create window settings selection
     selection_window = tkinter.Tk()
     selection_window.title("Wordle Settings")
 
     # Create label for window
-    label = tkinter.Label(selection_window, text="Select your game settings:")
+    label = tkinter.Label(selection_window, text="Preferred language:")
     label.pack()
 
     # Create radio buttons 
